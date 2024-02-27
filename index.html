@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="h-full w-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Page 1 PL</title>
+    <style>
+      .animated-element {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      }
+      .font28_20 {
+        font-size: 1.25rem;
+        font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+      }
+      .font12_12 {
+        font-size: 0.75rem;
+        font-size: clamp(0.75rem, 0.75rem + 0vw, 0.75rem);
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gradient-to-r from-white to-[#FFE0E3] m-0 p-0 h-full font-sans font-normal"
+    style="font-family: Arsenal, sans-serif"
+    ;
+  >
+    <div
+      class="flex flex-col items-center justify-center mt-[30px] px-8 md:px-0"
+    >
+      <span class="mb-[1rem] text-sm">Krok 1 of 2</span>
+      <div class="w-full md:w-[40vw] flex gap-3 justify-center">
+        <div class="rounded-2xl bg-[#FF6F6F] w-full h-1"></div>
+        <div class="rounded-2xl bg-[#FFB6B6] w-full h-1"></div>
+      </div>
+    </div>
+    <div class="flex justify-center items-center text-center mt-12" id="loader">
+      <img class="h-72" loop src="img/Comp_2.gif" id="loader-gif" alt="" />
+    </div>
+    <p class="heading px-8 font28_20 mt-10 flex justify-center text-center">
+      Wprowadż swój numer telefonu:<br />
+      Przygotuj telefon, za chwilę otrzymasz wiadomość z kodem PIN, którym
+      zatwierdzisz zamówienie.
+    </p>
+
+    <div
+      class="inputn h14 flex justify-center items-center text-center mt-8 px-2.5"
+    >
+      <div
+        class="phoneicon rounded-l-xl flex justify-center items-center text-center h-12 w-12 border border-[#E87979]"
+      >
+        <img class="h-[50%]" src="img/phoneasset.png" alt="" />
+      </div>
+      <input
+        class="inputph border border-[#E87979] border-l-0 rounded-r-xl pl-3 h-12 w-60 bg-transparent"
+        type="text"
+        placeholder="Numer telefonu"
+        id="inputField"
+        name="inputField"
+      />
+    </div>
+    <div
+      class="pt-3 pb-3 text-red flex text-center justify-center"
+      id="errorMessage"
+    ></div>
+
+    <div
+      class="downloadbtn px-2.5 flex justify-center items-center text-center"
+    >
+      <button
+        class="btndm rounded-xl bg-[#FF9696] h-12 w-72 flex justify-center items-center text-center font-bold"
+        id="redirectButton"
+        type="submit"
+        value="redirect"
+        onclick="return validateInput()"
+      >
+        DALEJ!
+      </button>
+    </div>
+    <div
+      class="footer px-2.5 text-white bg-[#2D0000] w-[100%] h-66 mt-[20rem] font12_12"
+    >
+      <p class="center text-center pt-6 pb-6">
+        Traffic Lynx Ltd <br />Aktywuj dostęp do:<br />WORKOUTNOW<br />za 10 zł
+      </p>
+      <p class="center text-center pb-6">
+        Oplata będzie pobierana co tydzeń Usługę możesz dezaktywować poprzez:
+        STOP WORK na 80708 (Orange) lub 80425 (T-Mobile / Plus).
+      </p>
+      <p class="center text-center pb-6">
+        Opłata zostanie doliczona do Twojego rachunku u twojego operatora
+        (telefon na abonament) lub odliczona od środków na koncie (telefon na
+        kartę).Wprowadż swój numer telefonu:
+      </p>
+      <p class="center text-center pb-6">
+        Przygotuj telefon, za chwilę otrzymasz wiadomość z kodem PIN, którym
+        zatwierdzisz zamówienie.
+      </p>
+      <p class="flex gap-3 justify-center text-center pb-6">
+        <a href="">REGULAMIN</a><a>POLITYKA PRYWATNOŚCI</a>
+      </p>
+    </div>
+
+    <style>
+      .arsenal-regular {
+        font-family: "Arsenal", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .font28_20 {
+        font-size: 1.25rem;
+        font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.75rem);
+      }
+      .font12_12 {
+        font-size: 0.75rem;
+        font-size: clamp(0.75rem, 0.75rem + 0vw, 0.75rem);
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("redirectButton")
+          .addEventListener("click", validateInput);
+      });
+
+      function validateInput() {
+        let input = document.getElementById("inputField").value.trim();
+        let errorMessageElement = document.getElementById("errorMessage");
+        if (input === "") {
+          errorMessageElement.textContent =
+            "Please Enter your Phone Number to proceed.";
+        } else if (isNaN(input)) {
+          errorMessageElement.textContent =
+            "Enter your phone number in correct format";
+        } else {
+          errorMessageElement.textContent = "";
+          redirect();
+        }
+      }
+
+      function redirect() {
+        window.location.href = "secondpage.html";
+      }
+
+      var random = Math.random();
+      document.getElementById("loader-gif").src = "img/Comp_2.gif?" + random;
+    </script>
+  </body>
+</html>
